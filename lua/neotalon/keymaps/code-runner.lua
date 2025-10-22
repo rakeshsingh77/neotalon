@@ -20,9 +20,4 @@ wk.add({
 		"<cmd>RunProject<CR>",
 		desc = "Run Project",
 	},
-	{
-		"<leader>rq",
-		"<cmd>RunClose<CR>",
-		desc = "Run Quite",
-	},
 })

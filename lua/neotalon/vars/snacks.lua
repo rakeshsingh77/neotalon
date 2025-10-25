@@ -1,0 +1,43 @@
+-- Snacks Modules
+SNACK_PLUGINS = {
+	animate = { enabled = false },
+	bigfile = { enabled = true },
+	bufdelete = { enabled = true },
+	dashboard = { enabled = true },
+	debug = { enabled = false },
+	dim = { enabled = false },
+	explorer = { enabled = true, default = true },
+	git = { enabled = true },
+	gitbrowse = { enabled = true },
+	image = { enabled = true },
+	indent = { 
+		enabled = true, 
+		priority = 1, 
+		char = "│",
+		scope = {
+			enabled = true,
+		},
+		chunk = {
+			enabled = true,
+		}
+	},
+	input = { enabled = true },
+	layout = { enabled = false },
+	lazygit = { enabled = true },
+	notifier = { enabled = false, timeout = 3000 },
+	notify = { enabled = false },
+	picker = { enabled = true },
+	profiler = { enabled = true },
+	quickfile = { enabled = true },
+	rename = { enabled = false },
+	scope = { enabled = false },
+	scratch = { enabled = true },
+	scroll = { enabled = false },
+	statuscolumn = { enabled = false },
+	terminal = { enabled = false },
+	toggle = { enabled = true },
+	util = { enabled = false },
+	win = { enabled = false },
+	words = { enabled = true },
+	zen = { enabled = true },
+}

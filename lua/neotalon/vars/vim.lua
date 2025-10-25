@@ -1,0 +1,21 @@
+-- Variables used to configure vim options
+MAPLEADER = " "
+MAPLOCALLEADER = "\\"
+EXPANDTAB = true
+TABSTOP = 4
+SHIFTWIDTH = 4
+AUTOINDENT = true
+COLORCOLUMN = 81
+CURSORLINE = true
+CURSORLINEOPT = "number"
+RELATIVENUMBERS = true
+NUMBER = true
+MOUSE = ""
+REMEMBER_CURSORPOS = true
+SIGNCOLUMN = "yes:3"
+WRAP = false
+SWAPFILE = true
+TOGGLETERM_KEY = "<C-\\>"
+FOLDMETHOD = "indent"
+FOLDENABLE = false
+FOLDLEVEL = 99

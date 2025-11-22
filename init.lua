@@ -1,0 +1,2 @@
+-- NeoTalon Configuration
+require("neotalon")

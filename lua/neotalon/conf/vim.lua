@@ -19,6 +19,26 @@ vim.opt.foldmethod = FOLDMETHOD or "indent"
 vim.opt.foldenable = FOLDENABLE or false
 vim.opt.foldlevel = FOLDLEVEL or 99
 
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+	float = { show_header = true, source = "always", border = "rounded"},
+})
+
+-- Show diagnostics in a floating window on CursorHold (hover)
+vim.api.nvim_create_autocmd("CursorHold", {
+	callback = function()
+		vim.diagnostic.open_float(nil, { focus = false })
+	end,
+})
+
+
+-- Keymap to manually open diagnostic float
+vim.keymap.set("n", "dm", vim.diagnostic.open_float, { silent = true })
+
 -- Remember cursor position
 if REMEMBER_CURSORPOS then
 	vim.api.nvim_create_autocmd("BufReadPost", {

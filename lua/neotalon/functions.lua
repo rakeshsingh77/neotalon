@@ -91,26 +91,16 @@ function get_lsp_servers()
 	return lsp_list
 end
 
--- Returns a dictionary of Linters that are enabled
+-- Returns a dictionary of Linters that are enabled (kept for backward compatibility)
 function get_linters(only_tools)
-	local linter_list = {}
-	for lang, config in pairs(languages) do
-		if config.linter and config.linter.enabled then
-			linter_list[lang] = config.linter.tools or {}
-		end
-	end
-	return linter_list
+	-- Delegate to `get_lang_linters()` which handles `mason_alias` correctly
+	return get_lang_linters()
 end
 
--- Returns a dictionary of formatters that are enabled
+-- Returns a dictionary of formatters that are enabled (kept for backward compatibility)
 function get_formatters()
-	local formatter_list = {}
-	for lang, config in pairs(languages) do
-		if config.formatter and config.formatter.enabled then
-			formatter_list[lang] = config.formatter.tools or {}
-		end
-	end
-	return formatter_list
+	-- Delegate to `get_lang_formatters()` which handles `mason_alias` correctly
+	return get_lang_formatters()
 end
 
 -- Returns only a list containing linters that are enabled

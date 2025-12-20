@@ -5,7 +5,6 @@ require("neotalon.vars.snacks")
 require("neotalon.vars.vim")
 
 LANGUAGES = require("neotalon.vars.languages")
-_G.vim = vim
 
 -- Source the default vim key mappings
 require("neotalon.keymaps.vim")
@@ -42,9 +41,19 @@ if ok then
 			local registry = require("mason-registry")
 			if #tools_to_install > 0 then
 				for _, tool in ipairs(tools_to_install) do
-					if not registry.is_installed(tool) then
-						local pkg = registry.get_package(tool)
-						pkg:install()
+					-- Check install status safely and skip unknown packages
+					local ok_status, is_installed = pcall(registry.is_installed, tool)
+					if not ok_status then
+						vim.notify("mason: failed to check installation status for '" .. tool .. "'", vim.log.levels.WARN)
+					else
+						if not is_installed then
+							local ok_pkg, pkg = pcall(registry.get_package, tool)
+							if ok_pkg and pkg then
+								pkg:install()
+							else
+								vim.notify("mason: package '" .. tool .. "' not found; skipping install", vim.log.levels.WARN)
+							end
+						end
 					end
 				end
 			end

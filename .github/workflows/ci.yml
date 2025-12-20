@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  lint:
+    name: Lint & Syntax
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system packages (Lua & luarocks)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lua5.4 lua5.4-dev luarocks curl
+          lua -v || true
+
+      - name: Install Luacheck
+        run: |
+          export PATH="$HOME/.luarocks/bin:$PATH"
+          luarocks install --local luacheck
+          echo "Luacheck: $(luacheck --version)"
+
+      - name: Install StyLua (attempt common assets)
+        run: |
+          set -e
+          mkdir -p /tmp/stylua-download
+          # Try common release asset names; succeed if any download works
+          if curl -sSfL -o /tmp/stylua-download/stylua "https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux"; then
+            echo "Downloaded stylua-linux"
+          elif curl -sSfL -o /tmp/stylua-download/stylua "https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-x86_64-unknown-linux-gnu"; then
+            echo "Downloaded stylua-x86_64-unknown-linux-gnu"
+          else
+            echo "Could not download stylua binary automatically; stylua checks will be skipped"
+          fi
+          if [ -f /tmp/stylua-download/stylua ]; then
+            sudo mv /tmp/stylua-download/stylua /usr/local/bin/stylua
+            sudo chmod +x /usr/local/bin/stylua
+            stylua --version || true
+          fi
+
+      - name: Run StyLua (format check)
+        run: |
+          if command -v stylua >/dev/null 2>&1; then
+            stylua --check --config-path .stylua.toml .
+          else
+            echo "::warning ::stylua not available - skipping stylua checks"
+          fi
+
+      - name: Run Luacheck
+        env:
+          PATH: "$HOME/.luarocks/bin:$PATH"
+        run: |
+          luacheck .
+
+      - name: Syntax check with luac
+        run: |
+          find . -name '*.lua' -print0 | xargs -0 -n1 luac -p

@@ -1,16 +1,12 @@
 -- Commonly used functions in Neotalon
 
-_G.languages = require("neotalon.vars.languages")
+local languages = require("neotalon.vars.languages")
 
 -- Check if a file exists and returns true or false
-local function file_exists(name)
-	local f = io.open(name, "r")
-	if f ~= nil then
-		io.close(f)
-		return true
-	else
-		return false
-	end
+local function file_exists(path)
+	-- Prefer Neovim's libuv wrapper for robust filesystem checks
+	local stat = vim.loop.fs_stat(path)
+	return stat ~= nil
 end
 
 -- Executes the setup in the given filename (without the extension)
@@ -57,8 +53,8 @@ function merge_lists(...)
 end
 
 -- Check if a value exists in a table
-function table_contains(table, value)
-	for _, v in ipairs(table) do
+function table_contains(tbl, value)
+	for _, v in ipairs(tbl) do
 		if v == value then
 			return true
 		end
@@ -67,13 +63,12 @@ function table_contains(table, value)
 end
 
 -- Function to combine two tables
-function TableConcat(t1, t2)
+local function TableConcat(t1, t2)
 	for i = 1, #t2 do
 		t1[#t1 + 1] = t2[i]
 	end
 	return t1
 end
-_G.TableConcat = TableConcat
 
 -- Returns a list of LSP servers that are enabled
 function get_lsp_servers()
@@ -91,17 +86,9 @@ function get_lsp_servers()
 	return lsp_list
 end
 
--- Returns a dictionary of Linters that are enabled (kept for backward compatibility)
-function get_linters(only_tools)
-	-- Delegate to `get_lang_linters()` which handles `mason_alias` correctly
-	return get_lang_linters()
-end
-
--- Returns a dictionary of formatters that are enabled (kept for backward compatibility)
-function get_formatters()
-	-- Delegate to `get_lang_formatters()` which handles `mason_alias` correctly
-	return get_lang_formatters()
-end
+-- Backwards compatibility: calling `get_linters()` or `get_formatters()` with no argument
+-- will return the language->tools dictionaries via `get_lang_linters()` and `get_lang_formatters()`.
+-- (Compatibility handled in the single `get_linters(language)` / `get_formatters(language)` implementations.)
 
 -- Returns only a list containing linters that are enabled
 function get_linter_tools()
@@ -180,11 +167,12 @@ function get_debuggers(language)
 end
 
 -- Returns a list of formatters that are enabled for the given language
+-- If called without an argument, returns a table mapping language -> formatter-tools
 function get_formatters(language)
-	local formatter_list = {}
 	if not language then
-		language = vim.bo.filetype
+		return get_lang_formatters()
 	end
+	local formatter_list = {}
 	if languages[language] and languages[language].formatter and languages[language].formatter.enabled then
 		if languages[language].formatter.mason_alias then
 			formatter_list = { languages[language].formatter.mason_alias }
@@ -196,15 +184,16 @@ function get_formatters(language)
 end
 
 -- Returns a list of linters that are enabled for the given language
+-- If called without an argument, returns a table mapping language -> linter-tools
 function get_linters(language)
-	local linter_list = {}
 	if not language then
-		language = vim.bo.filetype
+		return get_lang_linters()
 	end
+	local linter_list = {}
 	if languages[language] and languages[language].linter and languages[language].linter.enabled then
 		if languages[language].linter.mason_alias then
 			linter_list = { languages[language].linter.mason_alias }
-		else	
+		else
 			linter_list = languages[language].linter.tools or {}
 		end
 	end
@@ -255,6 +244,6 @@ function get_lang_linters()
 		end
 	end
 	return lang_linters
-end	
+end
 
 

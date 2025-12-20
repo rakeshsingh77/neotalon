@@ -124,7 +124,7 @@ local languages = {
 		debugger = { enabled = false, tools = {} },
 	},
 	yaml = {
-		lsp = { enabled = true, servers = { "yamlls" } },
+		lsp = { enabled = true, servers = { "yaml-language-server" } },
 		linter = { enabled = true, tools = { "yamllint" } },
 		formatter = { enabled = true, tools = { "prettier" } },
 		debugger = { enabled = false, tools = {} },

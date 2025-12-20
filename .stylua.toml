@@ -1,0 +1,11 @@
+-- Stylua configuration for consistent code style
+indent_type = "Spaces"
+indent_width = 4
+tab_width = 4
+column_width = 120
+quote_style = "AutoPreferDouble"
+line_endings = "Unix"
+
+[ignore]
+# Keep Neovim generated or vendored files unchanged if added later
+files = ["**/site/**"]

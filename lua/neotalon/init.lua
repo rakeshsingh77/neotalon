@@ -1,7 +1,9 @@
 -- Source all variable files in the vars directory
+require("neotalon.vars.neotalon")
 require("neotalon.vars.colors")
 require("neotalon.vars.snacks")
 require("neotalon.vars.vim")
+
 LANGUAGES = require("neotalon.vars.languages")
 _G.vim = vim
 

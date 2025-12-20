@@ -2,7 +2,6 @@ local M = {}
 
 function M.setup()
 	local wk = require("which-key")
-
 	-- Neovim Top-level Keymaps
 	wk.add({
 		{ "<leader>n", "<cmd>n<cr>", desc = "New" },

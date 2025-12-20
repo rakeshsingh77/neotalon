@@ -19,13 +19,40 @@ vim.opt.foldmethod = FOLDMETHOD or "indent"
 vim.opt.foldenable = FOLDENABLE or false
 vim.opt.foldlevel = FOLDLEVEL or 99
 
+vim.g.health_icons = {
+  ok = "✓",
+  error = "✗",
+  warning = "⚠",
+  info = "ℹ",
+}
+
+-- Better diagnostic signs in the sign column (requires a nerd font / patched font)
+local sign_list = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+
 vim.diagnostic.config({
+	virtual_text = {
+		prefix = "●",
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = sign_list.Error,
+			[vim.diagnostic.severity.WARN] = sign_list.Warn,
+			[vim.diagnostic.severity.INFO] = sign_list.Info,
+			[vim.diagnostic.severity.HINT] = sign_list.Hint,
+		},
+		linehl = {
+			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+		},
+		numhl = {
+			[vim.diagnostic.severity.WARN] = "WarningMsg",
+		},
+	},
 	virtual_text = true,
 	signs = true,
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,
-	float = { show_header = true, source = "always", border = "rounded"},
+	float = { show_header = true, source = "always", border = "rounded" },
 })
 
 -- Show diagnostics in a floating window on CursorHold (hover)
@@ -34,7 +61,6 @@ vim.api.nvim_create_autocmd("CursorHold", {
 		vim.diagnostic.open_float(nil, { focus = false })
 	end,
 })
-
 
 -- Keymap to manually open diagnostic float
 vim.keymap.set("n", "dm", vim.diagnostic.open_float, { silent = true })

@@ -1,15 +1,23 @@
-local cmp = require("cmp")
+local ok_cmp, cmp = pcall(require, "cmp")
+if not ok_cmp then
+	return
+end
+
+local has_luasnip, luasnip = pcall(require, "luasnip")
 
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
+			if has_luasnip then
+				luasnip.lsp_expand(args.body)
+			end
 		end,
 	},
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
+	-- Note: <A-.> and <A-,> (Alt) mappings may not work in all terminals; consider alternatives like <C-Space>.
 	mapping = cmp.mapping.preset.insert({
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -18,8 +26,8 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif require("luasnip").expand_or_jumpable() then
-				require("luasnip").expand_or_jump()
+			elseif has_luasnip and luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
@@ -27,8 +35,8 @@ cmp.setup({
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif require("luasnip").jumpable(-1) then
-				require("luasnip").jump(-1)
+			elseif has_luasnip and luasnip.jumpable(-1) then
+				luasnip.jump(-1)
 			else
 				fallback()
 			end
@@ -41,12 +49,10 @@ cmp.setup({
 	}, {
 		{ name = "buffer" },
 		{ name = "path" },
-		{ name = "cmdline" },
 		{ name = "codeium" },
 	}),
 })
 
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
@@ -54,7 +60,6 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({

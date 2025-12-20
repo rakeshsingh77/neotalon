@@ -1,18 +1,27 @@
 -- Snacks Modules
+
 SNACK_PLUGINS = {
 	animate = { enabled = false },
 	bigfile = { enabled = true },
 	bufdelete = { enabled = true },
-	dashboard = { enabled = true },
+	dashboard = {
+		enabled = true,
+		preset = {
+			header = BANNER_TEXT,
+		},
+	},
 	debug = { enabled = false },
 	dim = { enabled = false },
-	explorer = { enabled = true, default = true },
+	explorer = {
+		enabled = true,
+		replace_netrw = true
+	},
 	git = { enabled = true },
 	gitbrowse = { enabled = true },
 	image = { enabled = true },
-	indent = { 
-		enabled = true, 
-		priority = 1, 
+	indent = {
+		enabled = true,
+		priority = 1,
 		char = "│",
 		scope = {
 			enabled = true,
@@ -23,7 +32,7 @@ SNACK_PLUGINS = {
 	},
 	input = { enabled = true },
 	layout = { enabled = false },
-	lazygit = { enabled = true },
+	lazygit = { enabled = false },
 	notifier = { enabled = false, timeout = 3000 },
 	notify = { enabled = false },
 	picker = { enabled = true },

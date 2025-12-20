@@ -7,11 +7,9 @@ function M.setup()
 			auto_trigger = true,
 			debounce = 75,
 			keymap = {
-				accept = "<C-Tab">,
-				accept_word = "<A-w>",
-				accept_line = "<C-Down>",
-				next = "<C-l>",
-				prev = "<C-k>",
+				accept = "<C-Enter>",
+				next = "<C-Tab>",
+				prev = "<C-Shift-Tab>",
 				dismiss = "<C-\\>",
 			},
 		},
@@ -20,5 +18,7 @@ function M.setup()
 		},
 	})
 end
+vim.g.copilot_no_tab_map = true
+vim.keymap.set('i', '<C-Enter>', 'copilot#Accept("")', { expr = true, replace_keycodes = false })
 
 return M

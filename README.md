@@ -242,5 +242,8 @@ Please follow the repository's `CONTRIBUTING.md` for contribution guidelines.
 - If a plugin does not load, ensure its spec file is in `plugins-enabled/` and that the spec table is correct (see examples in `plugins-available/`).
 - `run_config()` will silently ignore missing `conf` files — this allows optional configuration files.
 - Use `:Lazy log` and `:Lazy health` for debugging plugin loading issues.
+- If you are running an Arch based distro, you currently need to install `lua-language-server` from the software repository instead of using Mason.
+  This is due to a library compatibility issue with the Arch `lua` package affecting libbfd-2.38-system.so
+  (December, 2025)
 
 ---

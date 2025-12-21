@@ -2,6 +2,9 @@
 
 A customizable Neovim Personal Development Environment — batteries included but fully configurable.
 
+This repository is mirrored from Codeberg: https://codeberg.org/rakeshsingh/neotalon ->
+Github: https://github.com/rakeshsingh77/neotalon
+
 ---
 
 ## Table of Contents
@@ -41,6 +44,9 @@ NeoTalon is a curated Neovim configuration that aims to be a modern, extendable 
 
 This repository is intended as a base you can fork and customize to your workflows.
 
+Note that this project is currently under development and should be considered beta quality.
+It is tested primarily on Manjaro Linux with Neovim 0.9+ but this should work with any other Linux distribution.
+
 ---
 
 ## Quick Start
@@ -56,7 +62,7 @@ This repository is intended as a base you can fork and customize to your workflo
 Clone into your Neovim config directory (or follow your own symlink pattern):
 
 ```bash
-git clone https://github.com/<you>/neotalon ~/.config/nvim
+git clone https://github.com/rakeshsingh77/neotalon ~/.config/nvim
 # then start nvim; lazy.nvim will be bootstrapped automatically
 ```
 
@@ -87,13 +93,14 @@ Files of note:
 
 ---
 
-## Enable / Disable Modules ✅ / ⚠️
+## Enable / Disable Modules
 
 NeoTalon uses a simple filesystem convention:
 
 - To enable a plugin/module, put its Lua spec file into `lua/neotalon/plugins-enabled/` (copy or **symlink** from `plugins-available/` if you want to keep the original). `lazy.nvim` imports `neotalon.plugins-enabled` so any specs in that directory are loaded.
+  Use of symlinks is recommended to keep `plugins-available/` as the source of truth.
 
-- To disable, remove the file (or move it to `plugins-available/`).
+- To disable, remove the link or file (or move it to `plugins-available/` if not using the symlink method).
 
 Examples:
 
@@ -109,7 +116,7 @@ After enabling/disabling a plugin, run `nvim` and use `:Lazy sync` or restart to
 
 ---
 
-## Adding New Modules & Plugins 🔧
+## Adding New Modules & Plugins
 
 Follow these steps to add a new plugin or module in a way that fits NeoTalon's conventions.
 
@@ -152,7 +159,7 @@ return M
 
 ### Keymaps for your module
 
-Create `lua/neotalon/keymaps/example.lua` and use `which-key`:
+Optionally, create `lua/neotalon/keymaps/example.lua` and use `which-key`:
 
 ```lua
 local wk = require('which-key')
@@ -167,7 +174,7 @@ The code in `run_config()` calls `set_keymap()` which will try to require `neota
 
 ---
 
-## Languages / LSP / Linters / Formatters 🧰
+## Languages / LSP / Linters / Formatters
 
 Language/tool selection lives in `lua/neotalon/vars/languages.lua`. Each language entry has flags for `lsp`, `linter`, `formatter`, and `debugger`, with `enabled = true/false` and tool names.
 
@@ -188,7 +195,7 @@ Run `:Mason` in Neovim to install the listed tools.
 
 ---
 
-## Default Key Mappings ⌨️
+## Default Key Mappings
 
 ### Leader key
 
@@ -209,7 +216,7 @@ For the full, up-to-date list of mappings, see the files in `lua/neotalon/keymap
 
 ---
 
-## Overriding & Defining New Mappings ✅
+## Overriding & Defining New Mappings
 
 - To **add** mappings for a module, add `lua/neotalon/keymaps/<module>.lua` and call `which-key` as shown above.
 - To **override** an existing mapping, edit its file in `lua/neotalon/keymaps/` and change the mapping. Since keymaps are applied on startup by `set_keymap(module)`, edits will take effect after restarting Neovim.
@@ -220,7 +227,7 @@ If you only need a quick override without editing the repo files, place a file w
 
 ---
 
-## Contributing 🤝
+## Contributing
 
 - Add new plugins as `plugins-available` and enable them via `plugins-enabled`.
 - Add or update `conf` and `keymaps` files to ship sensible defaults with your plugins.
@@ -230,7 +237,7 @@ Please follow the repository's `CONTRIBUTING.md` for contribution guidelines.
 
 ---
 
-## Troubleshooting & Notes ⚠️
+## Troubleshooting & Notes
 
 - If a plugin does not load, ensure its spec file is in `plugins-enabled/` and that the spec table is correct (see examples in `plugins-available/`).
 - `run_config()` will silently ignore missing `conf` files — this allows optional configuration files.

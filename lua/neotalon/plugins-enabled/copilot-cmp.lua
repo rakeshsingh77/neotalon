@@ -1,1 +1,0 @@
-../plugins-available/copilot-cmp.lua

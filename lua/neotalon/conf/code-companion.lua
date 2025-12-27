@@ -1,56 +1,43 @@
+-- See https://codecompanion.olimorris.dev/getting-started
+-- CoPilot is used by default.
+-- If copilot.nvim is configured and functional, this should
+-- automatically work.
+
+
 local M = {}
+local chat_adapter = "copilot"
+local chat_model = "gpt-4.1"
+local inline_adapter = "copilot"
+local inline_model = "gpt-4.1"
+local cmd_adapter = "copilot" 
+local cmd_model = "gpt-4.1"
+local background_adapter = "copilot"
+local background_model = "gpt-4.1"
 
 function M.setup()
+	-- Default chat adapter. Change to "openai" or "anthropic" to switch defaults.
+	local default_chat_adapter = "copilot"
+
 	require("codecompanion").setup({
-		strategies = {
+		interactions = {
 			chat = {
-				adapter = "openai",
+				adapter = {
+					name = chat_adapter,
+					model = chat_model,
+				},
 			},
 			inline = {
-				adapter = "openai",
+				adapter = inline_adapter,
 			},
-		},
-		adapters = {
-			openai = function()
-				return require("codecompanion.adapters").extend("openai", {
-					env = {
-						api_key = os.getenv("OPENAI_API_KEY"),
-					},
-				})
-			end,
-			anthropic = function()
-				return require("codecompanion.adapters").extend("anthropic", {
-					env = {
-						api_key = os.getenv("ANTHROPIC_API_KEY"),
-					},
-				})
-			end,
-			azure_openai = function()
-				return require("codecompanion.adapters").extend("azure_openai", {
-					env = {
-						api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-						endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
-						deployment_id = os.getenv("AZURE_OPENAI_DEPLOYMENT_ID"),
-					},
-				})
-			end,
-			copilot = function()
-				return require("codecompanion.adapters").extend("copilot", {})
-			end,
-			gemini = function()
-				return require("codecompanion.adapters").extend("gemini", {
-					env = {
-						api_key = os.getenv("GOOGLE_API_KEY"),
-					},
-				})
-			end,
-			ollama = function()
-				return require("codecompanion.adapters").extend("ollama", {
-					env = {
-						endpoint = os.getenv("OLLAMA_ENDPOINT") or "http://localhost:11434",
-					},
-				})
-			end,
+			cmd = {
+				adapter = cmd_adapter,
+			},
+			background = {
+				adapter = {
+					name = background_adapter,
+					model = background_model,
+				},
+			},
 		},
 	})
 end

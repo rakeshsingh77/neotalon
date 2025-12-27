@@ -45,7 +45,8 @@ NeoTalon is a curated Neovim configuration that aims to be a modern, extendable 
 This repository is intended as a base you can fork and customize to your workflows.
 
 Note that this project is currently under development and should be considered beta quality.
-It is tested primarily on Manjaro Linux with Neovim 0.9+ but this should work with any other Linux distribution.
+It is tested on Manjaro and Red Hat 8, and should work on any modern Linux distro.
+**Windows is not currenly supported.**
 
 ---
 

@@ -49,7 +49,7 @@ cmp.setup({
 	}, {
 		{ name = "buffer" },
 		{ name = "path" },
-		{ name = "codeium" },
+		{ name = "codecompanion" },
 	}),
 })
 

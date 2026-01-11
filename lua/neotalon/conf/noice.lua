@@ -1,6 +1,9 @@
 local M = {}
 
 function M.setup()
+    require("notify").setup({
+        top_down = false,
+    })
 	require("noice").setup({
 		lsp = {
 			progress = {

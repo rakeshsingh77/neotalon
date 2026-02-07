@@ -4,6 +4,9 @@
 return {
 	"CRAG666/code_runner.nvim",
 	event = "VeryLazy",
+	dependencies = {
+		"akinsho/toggleterm.nvim",
+	},
 	config = function()
 		run_config("code-runner")
 	end,

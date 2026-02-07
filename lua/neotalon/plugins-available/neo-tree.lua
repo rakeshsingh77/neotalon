@@ -9,7 +9,7 @@ return {
 		lazy = false,
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-tree/nvim-web-devicons" }, -- not strictly required, but recommended
+			{ "nvim-tree/nvim-web-devicons" }, 
 			{ "MunifTanjim/nui.nvim" },
 			{ "folke/snacks.nvim" },
 		},

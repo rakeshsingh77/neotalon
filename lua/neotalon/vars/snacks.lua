@@ -1,7 +1,7 @@
 -- Snacks Modules
 
 SNACK_PLUGINS = {
-	animate = { enabled = false },
+	animate = { enabled = true },
 	bigfile = { enabled = true },
 	bufdelete = { enabled = true },
 	dashboard = {
@@ -13,8 +13,8 @@ SNACK_PLUGINS = {
 	debug = { enabled = false },
 	dim = { enabled = false },
 	explorer = {
-		enabled = true,
-		replace_netrw = true
+		enabled = false,
+		replace_netrw = false
 	},
 	git = { enabled = true },
 	gitbrowse = { enabled = true },
@@ -37,7 +37,7 @@ SNACK_PLUGINS = {
 	notify = { enabled = false },
 	picker = { enabled = true },
 	profiler = { enabled = true },
-	quickfile = { enabled = true },
+	quickfile = { enabled = false },
 	rename = { enabled = false },
 	scope = { enabled = false },
 	scratch = { enabled = true },

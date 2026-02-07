@@ -6,13 +6,13 @@
 
 local M = {}
 local chat_adapter = "copilot"
-local chat_model = "gpt-4.1"
+local chat_model = "claude-haiku-4.5"
 local inline_adapter = "copilot"
-local inline_model = "gpt-4.1"
+local inline_model = "claude-haiku-4.5"
 local cmd_adapter = "copilot" 
-local cmd_model = "gpt-4.1"
+local cmd_model = "claude-haiku-4.5"
 local background_adapter = "copilot"
-local background_model = "gpt-4.1"
+local background_model = "claude-haiku-4.5"
 
 function M.setup()
 	-- Default chat adapter. Change to "openai" or "anthropic" to switch defaults.
@@ -39,6 +39,20 @@ function M.setup()
 				},
 			},
 		},
+	})
+
+	require("render-markdown").setup({
+		ft = { "markdown", "codecompanion" },
+	})
+
+	require("img-clip").setup({
+		filetypes = {
+			codecompanion = {
+				prompt_for_filename = false,
+				template = "[Image]($FILE_PATH)",
+				use_absolute_path = true,
+			}
+		}
 	})
 end
 

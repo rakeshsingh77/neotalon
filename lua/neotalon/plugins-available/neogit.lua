@@ -7,6 +7,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"sindrets/diffview.nvim",
 		"folke/snacks.nvim",
+		"ibhagwan/fzf-lua",
 	},
 	event = "VeryLazy",
 	config = function()

@@ -20,4 +20,4 @@ Making changes
 - Add tests for new behaviour when possible (not yet available for this repo).
 - Update CHANGELOG.md with a short description of your change.
 
-Thanks! 🎯
+Thanks!

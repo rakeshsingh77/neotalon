@@ -1,3 +1,4 @@
+-- ToggleTerm configuration
 local M = {}
 
 function M.setup()

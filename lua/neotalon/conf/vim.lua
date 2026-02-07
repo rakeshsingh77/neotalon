@@ -1,23 +1,56 @@
 -- Configure vim settings
+-- Type annotations for global variables from vars/
+---@type boolean
+EXPANDTAB = EXPANDTAB or false
+---@type number
+TABSTOP = TABSTOP or 4
+---@type number
+SHIFTWIDTH = SHIFTWIDTH or 4
+---@type boolean
+AUTOINDENT = AUTOINDENT or false
+---@type number
+COLORCOLUMN = COLORCOLUMN or 80
+---@type boolean
+CURSORLINE = CURSORLINE or false
+---@type string
+CURSORLINEOPT = CURSORLINEOPT or "number"
+---@type boolean
+RELATIVENUMBERS = RELATIVENUMBERS or false
+---@type boolean
+NUMBER = NUMBER or false
+---@type string
+MOUSE = MOUSE or ""
+---@type boolean
+SIGNCOLUMN = SIGNCOLUMN or false
+---@type boolean
+WRAP = WRAP or false
+---@type boolean
+SWAPFILE = SWAPFILE or false
+---@type string
+FOLDMETHOD = FOLDMETHOD or "indent"
+---@type boolean
+FOLDENABLE = FOLDENABLE or false
+---@type number
+FOLDLEVEL = FOLDLEVEL or 99
 
 -- Set up the Neovim options based on the values in the vars.lua file
-vim.opt.expandtab = EXPANDTAB or false
-vim.opt.tabstop = TABSTOP or 4
-vim.opt.shiftwidth = SHIFTWIDTH or 4
-vim.opt.autoindent = AUTOINDENT or false
-vim.opt.colorcolumn = string.format("%d", COLORCOLUMN or 80)
-vim.opt.cursorline = CURSORLINE or false
-vim.opt.cursorlineopt = CURSORLINEOPT or "number"
-vim.opt.relativenumber = RELATIVENUMBERS or false
-vim.opt.number = NUMBER or false
-vim.opt.mouse = MOUSE or ""
+vim.opt.expandtab = EXPANDTAB
+vim.opt.tabstop = TABSTOP
+vim.opt.shiftwidth = SHIFTWIDTH
+vim.opt.autoindent = AUTOINDENT
+vim.opt.colorcolumn = string.format("%d", COLORCOLUMN)
+vim.opt.cursorline = CURSORLINE
+vim.opt.cursorlineopt = CURSORLINEOPT
+vim.opt.relativenumber = RELATIVENUMBERS
+vim.opt.number = NUMBER
+vim.opt.mouse = MOUSE
 vim.opt.signcolumn = SIGNCOLUMN and "yes" or "no"
-vim.opt.wrap = WRAP or false
-vim.opt.swapfile = SWAPFILE or false
+vim.opt.wrap = WRAP
+vim.opt.swapfile = SWAPFILE
 vim.opt.clipboard = "unnamedplus"
-vim.opt.foldmethod = FOLDMETHOD or "indent"
-vim.opt.foldenable = FOLDENABLE or false
-vim.opt.foldlevel = FOLDLEVEL or 99
+vim.opt.foldmethod = FOLDMETHOD
+vim.opt.foldenable = FOLDENABLE
+vim.opt.foldlevel = FOLDLEVEL
 
 vim.g.health_icons = {
   ok = "✓",

@@ -59,7 +59,7 @@ local languages = {
 	},
 	lua = {
 		lsp = { enabled = true, servers = { "lua-language-server" } },
-		linter = { enabled = true, tools = {} },
+		linter = { enabled = false, tools = {} },
 		formatter = { enabled = true, tools = { "stylua" } },
 		debugger = { enabled = false, tools = {} },
 	},

@@ -1,3 +1,4 @@
+-- Comfiguration for the Tokyo Night colorscheme
 local M = {}
 
 function M.setup()

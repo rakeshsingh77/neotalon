@@ -1,7 +1,16 @@
+-- Lualine configuration
+---@class LualineConfig
 local M = {}
 
+---@type fun(): nil
 function M.setup()
-	require("lualine").setup({
+	local ok, lualine = pcall(require, "lualine")
+	if not ok then
+		vim.notify("lualine.setup: lualine not available", vim.log.levels.WARN)
+		return
+	end
+
+	lualine.setup({
 		options = {
 			icons_enabled = true,
 			theme = "auto",

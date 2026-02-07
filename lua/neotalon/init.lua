@@ -1,9 +1,13 @@
+-- Neotalon - A customizable Neovim Personal Development Environment
+-- @module neotalon
+
 -- Source all variable files in the vars directory
 require("neotalon.vars.neotalon")
 require("neotalon.vars.colors")
 require("neotalon.vars.snacks")
 require("neotalon.vars.vim")
 
+---@type table Language configuration table
 LANGUAGES = require("neotalon.vars.languages")
 
 -- Source the default vim key mappings
@@ -19,11 +23,14 @@ require("neotalon.functions")
 require("neotalon.conf.lazy")
 
 -- Set the colorscheme
-local status, _ = pcall(vim.cmd.colorscheme, COLORSCHEME)
+local status, colorscheme_err = pcall(vim.cmd.colorscheme, COLORSCHEME)
 if not status then
 	local msg = "Colorscheme '" .. COLORSCHEME .. "' not found. Falling back to '" .. FALLBACK_COLORSCHEME .. "'."
 	vim.notify(msg, vim.log.levels.WARN)
-	vim.cmd.colorscheme(FALLBACK_COLORSCHEME)
+	local fallback_status, fallback_err = pcall(vim.cmd.colorscheme, FALLBACK_COLORSCHEME)
+	if not fallback_status then
+		vim.notify("Failed to load fallback colorscheme: " .. tostring(fallback_err), vim.log.levels.ERROR)
+	end
 	return
 end
 
@@ -59,4 +66,6 @@ if ok then
 			end
 		end,
 	})
+else
+	vim.notify("mason-tool-installer not available; auto-install disabled", vim.log.levels.INFO)
 end

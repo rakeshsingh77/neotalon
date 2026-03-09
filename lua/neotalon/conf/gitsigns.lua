@@ -5,7 +5,7 @@ function M.setup()
 		current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
 		current_line_blame = true,
 	})
-	vim.opt.signcolumn = SIGN_COLUMN
+	vim.opt.signcolumn = SIGN_COLUMN or "yes:2"
 end
 
 return M

@@ -1,3 +1,7 @@
+-- Catppuccin configuration
+-- The variant can be set by defining COLORSCHEME_VARIANT in the vars.lua file.
+-- Options include "latte", "frappe", "macchiato", and "mocha". 
+-- The default is "mocha".
 local M = {}
 
 function M.setup()

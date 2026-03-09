@@ -24,6 +24,14 @@ wk.add({
 		end,
 		desc = "Explore Files (Ctrl-e)",
 	},
+    {
+		"<leader>fe",
+		function()
+			Snacks.picker.explorer()
+		end,
+		desc = "Explore Files (Ctrl-e)",
+	},
+
 	{
 		"<leader>sf",
 		function()
@@ -153,3 +161,5 @@ if has_yanky then
 		},
 	})
 end
+
+

@@ -6,7 +6,7 @@ wk.add({
 	{ "<leader>nf", "<cmd>Neotree float<cr>", desc = "Float" },
 	{ "<leader>ns", "<cmd>Neotree focus<cr>", desc = "Focus" },
 	{ "<leader>nr", "<cmd>Neotree reveal<cr>", desc = "Reveal" },
+    { "<leader>fe", "<cmd>Neotree toggle<cr>", desc = "Neotree File Explorer" },
 })
 
-vim.api.nvim_set_keymap("n", ":Ex", ":Neotree toggle<CR>", { noremap = true, silent = true })
 

@@ -42,7 +42,7 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources({
-		{ name = "copilot", group_index = 1 },
+		-- { name = "copilot", group_index = 1 },
 		{ name = "nvim_lsp", group_index = 1 },
 		{ name = "luasnip", group_index = 1 },
 	}, {

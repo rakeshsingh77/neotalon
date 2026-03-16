@@ -5,37 +5,31 @@
 
 
 local M = {}
-local chat_adapter = "copilot"
-local chat_model = "claude-haiku-4.5"
-local inline_adapter = "copilot"
-local inline_model = "claude-haiku-4.5"
-local cmd_adapter = "copilot" 
-local cmd_model = "claude-haiku-4.5"
-local background_adapter = "copilot"
-local background_model = "claude-haiku-4.5"
 
 function M.setup()
 	-- Default chat adapter. Change to "openai" or "anthropic" to switch defaults.
+    -- This can be changed in vars/ai.lua
 	local default_chat_adapter = "copilot"
+    local default_chat_model = "claude-sonnet-4.6"
 
 	require("codecompanion").setup({
 		interactions = {
 			chat = {
 				adapter = {
-					name = chat_adapter,
-					model = chat_model,
+					name = CHAT_ADAPTER or default_chat_adapter,
+					model = CHAT_MODEL or default_chat_model,
 				},
 			},
 			inline = {
-				adapter = inline_adapter,
+				adapter = INLINE_ADAPTER,
 			},
 			cmd = {
-				adapter = cmd_adapter,
+				adapter = CMD_ADAPTER,
 			},
 			background = {
 				adapter = {
-					name = background_adapter,
-					model = background_model,
+					name = BACKGROUND_ADAPTER,
+					model = BACKGROUND_MODEL,
 				},
 			},
 		},

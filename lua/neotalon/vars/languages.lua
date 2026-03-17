@@ -94,10 +94,10 @@ local languages = {
 		debugger = { enabled = false, tools = {} },
 	},
 	rust = {
-		lsp = { enabled = false, servers = { "rust_analyzer" } },
-		linter = { enabled = false, tools = {} },
-		formatter = { enabled = false, tools = { "rustfmt" } },
-		debugger = { enabled = false, tools = { "cpptools" } },
+		lsp = { enabled = true, servers = { "rust_analyzer" } },
+		linter = { enabled = true, tools = {} },
+		formatter = { enabled = true, tools = { "rustfmt" } },
+		debugger = { enabled = true, tools = { "cpptools" } },
 	},
 	sh = {
 		lsp = { enabled = true, servers = { "bash-language-server" } },

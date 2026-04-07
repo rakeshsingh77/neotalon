@@ -16,6 +16,7 @@ SNACK_PLUGINS = {
 		enabled = false,
 		replace_netrw = false
 	},
+    gh = { enabled = false },
 	git = { enabled = true },
 	gitbrowse = { enabled = true },
 	image = { enabled = true },

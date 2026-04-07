@@ -1,163 +1,209 @@
 local wk = require("which-key")
 
--- File Management
+wk.add({ "<leader>s", name = "Snacks" })
+
+local function safe_require_snacks()
+	local ok, Snacks = pcall(require, "snacks")
+	return ok and Snacks
+end
+
 wk.add({
 	{ "<leader>s", name = "Snacks" },
 	{
 		"<leader>sb",
 		function()
-			Snacks.picker.buffers()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.picker.buffers() end
 		end,
-		desc = "Buffers (Ctrl-b)",
+		desc = "Buffers",
 	},
 	{
 		"<leader>sd",
 		function()
-			Snacks.bufdelete()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.bufdelete() end
 		end,
-		desc = "Delete Buffer (Ctrl-d)",
+		desc = "Delete Buffer",
 	},
 	{
 		"<leader>se",
 		function()
-			Snacks.picker.explorer()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.picker.explorer() end
 		end,
-		desc = "Explore Files (Ctrl-e)",
+		desc = "Explore Files",
 	},
-    {
-		"<leader>fe",
-		function()
-			Snacks.picker.explorer()
-		end,
-		desc = "Explore Files (Ctrl-e)",
-	},
-
 	{
 		"<leader>sf",
 		function()
-			Snacks.picker.smart()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.picker.smart() end
 		end,
-		desc = "Find Files (Ctrl-f)",
+		desc = "Find Files",
 	},
 	{
 		"<leader>sg",
 		function()
-			Snacks.picker.grep()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.picker.grep() end
 		end,
-		desc = "Grep Files (Ctrl-g)",
+		desc = "Grep Files",
 	},
 	{
 		"<leader>st",
 		function()
-			Snacks.terminal.toggle()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.terminal.toggle() end
 		end,
 		desc = "Terminal",
 	},
 	{
 		"<leader>sz",
 		function()
-			Snacks.zen()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.zen() end
 		end,
-		desc = "Zen Mode Toggle",
+		desc = "Zen Mode",
 	},
 	{
 		"<leader>sD",
 		function()
-			Snacks.bufdelete.all()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.bufdelete.all() end
 		end,
-		desc = "Delete All Buffers (Shift-Ctrl-D)",
+		desc = "Delete All Buffers",
 	},
 	{
 		"<leader>sH",
 		function()
-			Snacks.picker.help()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.picker.help() end
 		end,
 		desc = "Help",
 	},
 	{
 		"<leader>s:",
 		function()
-			Snacks.picker.commands()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.picker.commands() end
 		end,
 		desc = "Commands",
 	},
-})
-
--- Alternative File Management Keymaps
-wk.add({
-	-- Add a label for g keymaps related to git
-	{
-		"<c-b>",
-		function()
-			Snacks.picker.buffers()
-		end,
-		desc = "Buffers",
-	},
-	{
-		"<c-d>",
-		function()
-			Snacks.bufdelete()
-		end,
-		desc = "Delete Buffer",
-	},
-	{
-		"<c-e>",
-		function()
-			Snacks.picker.explorer()
-		end,
-		desc = "Explore Files",
-	},
-	{
-		"<c-f>",
-		function()
-			Snacks.picker.smart()
-		end,
-		desc = "Find Files",
-	},
-	{
-		"<c-g>",
-		function()
-			Snacks.picker.grep()
-		end,
-		desc = "Grep Files",
-	},
-	{
-		"<c-D>",
-		function()
-			Snacks.bufdelete.all()
-		end,
-		desc = "Delete All Buffers",
-	},
-})
-
--- Scratch Pad Keymaps
-wk.add({
 	{
 		"<leader>s.",
 		function()
-			Snacks.scratch()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.scratch() end
 		end,
-		desc = "Toggle Scratch Buffer",
+		desc = "Scratch Buffer",
 	},
 	{
 		"<leader>sS",
 		function()
-			Snacks.scratch.select()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.scratch.select() end
 		end,
-		desc = "Select Scratch Buffer",
+		desc = "Select Scratch",
 	},
 })
 
--- Yanky Keymaps
+wk.add({
+	{ "<leader>g", name = "Git" },
+	{
+		"<leader>gs",
+		function()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.picker.git_status() end
+		end,
+		desc = "Git Status",
+	},
+	{
+		"<leader>gl",
+		function()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.picker.git_log() end
+		end,
+		desc = "Git Log",
+	},
+	{
+		"<leader>gL",
+		function()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.picker.git_log_current_file() end
+		end,
+		desc = "Git Log (Current File)",
+	},
+	{
+		"<leader>gb",
+		function()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.git.blame() end
+		end,
+		desc = "Git Blame",
+	},
+	{
+		"<leader>gv",
+		function()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.gitbrowse() end
+		end,
+		desc = "Git Browse",
+	},
+	{
+		"<leader>glg",
+		function()
+			local Snacks = safe_require_snacks()
+			if Snacks and Snacks.lazygit then Snacks.lazygit() end
+		end,
+		desc = "LazyGit",
+	},
+})
+
+wk.add({
+	{
+		"<leader>stn",
+		function()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.toggle.notifier() end
+		end,
+		desc = "Toggle Notifier",
+	},
+	{
+		"<leader>std",
+		function()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.toggle.dim() end
+		end,
+		desc = "Toggle Dim",
+	},
+	{
+		"<leader>sti",
+		function()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.toggle.indentation() end
+		end,
+		desc = "Toggle Indentation",
+	},
+	{
+		"<leader>stw",
+		function()
+			local Snacks = safe_require_snacks()
+			if Snacks then Snacks.toggle.word_wrap() end
+		end,
+		desc = "Toggle Word Wrap",
+	},
+})
+
 local has_yanky, _ = pcall(require, "yanky")
 if has_yanky then
 	wk.add({
 		{
 			"<leader>sy",
 			function()
-				Snacks.picker.yanky()
+				local Snacks = safe_require_snacks()
+				if Snacks then Snacks.picker.yanky() end
 			end,
-			desc = "Open Yank History",
+			desc = "Yank History",
 		},
 	})
 end

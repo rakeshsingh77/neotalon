@@ -21,6 +21,9 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true, de
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move selection down" })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move selection up" })
 
--- Map key for ToggleTerm
-vim.keymap.set("n", TOGGLETERM_KEY, ":ToggleTerm<CR>", { noremap = true, silent = true, desc = "Toggle terminal" })
-vim.keymap.set("t", TOGGLETERM_KEY, "<C-\\><C-n>:ToggleTerm<CR>", { noremap = true, silent = true, desc = "Exit terminal" })
+-- Map key for ToggleTerm (only if loaded)
+local ok, _ = pcall(require, "toggleterm")
+if ok then
+	vim.keymap.set("n", TOGGLETERM_KEY, ":ToggleTerm<CR>", { noremap = true, silent = true, desc = "Toggle terminal" })
+	vim.keymap.set("t", TOGGLETERM_KEY, "<C-\\><C-n>:ToggleTerm<CR>", { noremap = true, silent = true, desc = "Exit terminal" })
+end

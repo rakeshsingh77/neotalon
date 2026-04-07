@@ -18,4 +18,21 @@ return {
 			run_config("nvim-cmp")
 		end,
 	},
+	{
+		"ray-x/lsp_signature.nvim",
+		event = { "InsertEnter", "BufRead" },
+		config = function()
+			require("lsp_signature").setup({
+				bind = true,
+				doc_lines = 0,
+				floating_window = true,
+				hint_enable = false,
+				auto_close_after = nil,
+				trigger_on_new_leading = true,
+				handler_opts = { border = "rounded" },
+				check_signature_priority = true,
+				toggle_key = "<M-x>",
+			})
+		end,
+	},
 }

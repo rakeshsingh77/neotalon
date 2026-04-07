@@ -1,1 +1,0 @@
-../plugins-available/nvim-treesitter.lua

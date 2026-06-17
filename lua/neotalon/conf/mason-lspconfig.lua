@@ -6,6 +6,7 @@ function M.setup()
 		vim.lsp.protocol.make_client_capabilities(),
 		require("cmp_nvim_lsp").default_capabilities()
 	)
+    vim.lsp.handlers["$/progress"] = function() end
 
 	require("mason-lspconfig").setup({
 		automatic_enable = true,

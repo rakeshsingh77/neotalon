@@ -7,7 +7,7 @@ function M.setup()
 	require("noice").setup({
 		lsp = {
 			progress = {
-				enabled = true,
+				enabled = false,
 			},
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,

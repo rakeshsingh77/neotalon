@@ -4,6 +4,7 @@ local wk = require("which-key")
 
 wk.add({
 	{ "<leader>y", name = "Yanky" },
+	{ "<leader>y+", "<function>Snacks.picker.yanky()<cr>", desc = "Put Indent After (linewise)" },
 	{ "<leader>y]p", "<cmd>normal! ]p<cr>", desc = "Put Indent After (linewise)" },
 	{ "<leader>y[p", "<cmd>normal! [p<cr>", desc = "Put Indent Before (linewise)" },
 	{ "<leader>y]P", "<cmd>normal! ]P<cr>", desc = "Put Indent After (linewise, before)" },

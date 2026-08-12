@@ -1,5 +1,6 @@
 -- Language-specific configuration table (alphabetical, major Neovim LSP support)
 -- This module returns a table of language configs for use elsewhere.
+-- Ensure that these are available in Mason.
 -- Usage: local languages = require("neotalon.vars.languages")
 
 local languages = {

@@ -35,7 +35,7 @@ local languages = {
 		debugger = { enabled = false, tools = { "delve" } },
 	},
 	html = {
-		lsp = { enabled = true, servers = { "html" } },
+		lsp = { enabled = true, servers = { "html-lsp" } },
 		linter = { enabled = true, tools = { "htmlhint" } },
 		formatter = { enabled = true, tools = { "prettier" } },
 		debugger = { enabled = false, tools = {} },
